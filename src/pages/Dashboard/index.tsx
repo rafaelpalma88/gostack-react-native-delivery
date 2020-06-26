@@ -145,7 +145,7 @@ const Dashboard: React.FC = () => {
                 <FoodContent>
                   <FoodTitle>{food.name}</FoodTitle>
                   <FoodDescription>{food.description}</FoodDescription>
-                  <FoodPricing>{food.formattedPrice}</FoodPricing>
+                  <FoodPricing>{formatValue(food.price)}</FoodPricing>
                 </FoodContent>
               </Food>
             ))}
