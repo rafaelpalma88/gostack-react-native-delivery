@@ -73,7 +73,10 @@ const FoodDetails: React.FC = () => {
 
   useEffect(() => {
     async function loadFood(): Promise<void> {
-      // Load a specific food with extras based on routeParams id
+      api.get(`foods/${routeParams.id}`).then(response => {
+        setFood(response.data);
+        setExtras(response.data.extras);
+      });
     }
 
     loadFood();
@@ -97,6 +100,8 @@ const FoodDetails: React.FC = () => {
 
   const toggleFavorite = useCallback(() => {
     // Toggle if food is favorite or not
+    setIsFavorite(!isFavorite);
+    // api.post('favorites', food); ---> ISSO AQUI NAO FUNCIONOU!
   }, [isFavorite, food]);
 
   const cartTotal = useMemo(() => {
@@ -145,7 +150,7 @@ const FoodDetails: React.FC = () => {
             <FoodContent>
               <FoodTitle>{food.name}</FoodTitle>
               <FoodDescription>{food.description}</FoodDescription>
-              <FoodPricing>{food.formattedPrice}</FoodPricing>
+              <FoodPricing>{formatValue(food.price)}</FoodPricing>
             </FoodContent>
           </Food>
         </FoodsContainer>
