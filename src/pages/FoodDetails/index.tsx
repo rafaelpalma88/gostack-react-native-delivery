@@ -110,7 +110,7 @@ const FoodDetails: React.FC = () => {
         const newExtra = { ...extra };
 
         if (newExtra.quantity > 0) {
-          newExtra.quantity += 1;
+          newExtra.quantity -= 1;
         }
 
         return newExtra;
