@@ -62,12 +62,10 @@ const Dashboard: React.FC = () => {
       const { data } = await api.get<Food[]>('foods', {
         params: {
           name_like: searchValue,
-          description_like: searchValue,
+          // description_like: searchValue,
           category_like: selectedCategory,
         },
       });
-
-      console.log(data);
 
       const foodsFormatted = data.map(food => ({
         ...food,
@@ -93,6 +91,11 @@ const Dashboard: React.FC = () => {
   }, []);
 
   function handleSelectCategory(id: number): void {
+    if (selectedCategory === id) {
+      setSelectedCategory(undefined);
+      return;
+    }
+
     setSelectedCategory(id);
   }
 
